@@ -29,6 +29,9 @@ retiro en una cuenta específica.
 /reportes: Permite generar informes de movimientos por cliente dentro de un rango de fechas
 específico.
 
+En el archivo "Devsu.postman_collection.json" se encuentra una coleccion para la validación de los
+endpoints de la API. Este archivo debe ser importado desde Postman para su utilización.
+
 ## Dependencias y tecnologías principales
 
 El proyecto utiliza Java 17 como lenguaje de programación y Maven como herramienta de gestión de
@@ -41,5 +44,5 @@ Lombok para reducir la cantidad de código.
 * Java 17
 * Maven
 * Spring Boot 3.1.0
-* MySQL
+* Postgresql
 * Lombok
