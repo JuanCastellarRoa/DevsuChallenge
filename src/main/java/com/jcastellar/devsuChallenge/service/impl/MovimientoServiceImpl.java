@@ -10,7 +10,6 @@ import com.jcastellar.devsuChallenge.service.MovimientoService;
 import com.jcastellar.devsuChallenge.utility.excepciones.NoEncontrado;
 import com.jcastellar.devsuChallenge.utility.excepciones.PeticionErronea;
 import com.jcastellar.devsuChallenge.utility.mapper.MovimientoMapper;
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ReflectionUtils;
 
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
@@ -121,14 +119,7 @@ public class MovimientoServiceImpl implements MovimientoService {
     if (movimientoOpt.isPresent()) {
       Movimiento movimientoActual = movimientoOpt.get();
       double saldoTotal = 0;
-      Cuenta cuenta = cuentaRepository.findByNumeroCuenta(
-          movimientoDTO.getCuenta().getNumeroCuenta()).get();
-      double saldo = getUltimoMovimiento(cuenta.getMovimientos());
-      if (movimientoActual.getTipoMovimiento().getValue().equals("Retiro")) {
-        saldo += movimientoActual.getValor();
-      } else if (movimientoActual.getTipoMovimiento().getValue().equals("Deposito")) {
-        saldo -= movimientoActual.getValor();
-      }
+      double saldo = getSaldo(movimientoDTO.getCuenta().getNumeroCuenta(), movimientoActual);
 
       saldoTotal = hacerMovimiento(movimientoDTO.getTipoMovimiento().getValue(), saldo,
           movimientoDTO.getValor());
@@ -154,24 +145,48 @@ public class MovimientoServiceImpl implements MovimientoService {
   public MovimientoDTO actualizacionParcialByFields(Long id, Map<String, Object> fields) {
     Optional<Movimiento> movimientoOpt = movimientoRepository.findById(id);
     if (movimientoOpt.isPresent()) {
-      Movimiento movimientoActualizado = movimientoOpt.get();
-      fields.forEach((key, value) -> {
-        if (key.equals("tipoMovimiento")) {
-          value = movimientoMapper.stringToTipoMovimiento(value.toString());
-        }
-        Field field = ReflectionUtils.findField(Movimiento.class, key);
-        field.setAccessible(true);
-        ReflectionUtils.setField(field, movimientoActualizado, value);
-      });
-      movimientoRepository.save(movimientoActualizado);
-      logger.info("Movimiento parcialmente acualizado!");
-      MovimientoDTO movimientoDTO = movimientoMapper.movimientoToMovimientoDTO(
-          movimientoActualizado);
-      return movimientoDTO;
+      Movimiento movimientoActual = movimientoOpt.get();
+      double saldoTotal = 0;
+      double saldo = getSaldo(movimientoActual.getCuenta().getNumeroCuenta(), movimientoActual);
+      populateMapToMovimiento(movimientoActual, fields);
+      saldoTotal = hacerMovimiento(movimientoActual.getTipoMovimiento().getValue(), saldo,
+          movimientoActual.getValor());
+      if (saldoTotal < 0) {
+        throw new PeticionErronea("Fondos insuficientes");
+      }
+
+      movimientoActual.setSaldo(saldoTotal);
+      movimientoRepository.save(movimientoActual);
+      logger.info("Movimiento actualizado");
+      return movimientoMapper.movimientoToMovimientoDTO(movimientoActual);
     } else {
       logger.warn("Movimiento no encontrado");
       throw new NoEncontrado("Movimiento no encontrado");
     }
+  }
+
+  private double getSaldo(String numeroCuenta, Movimiento movimientoActual1) {
+    Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta).get();
+    double saldo = getUltimoMovimiento(cuenta.getMovimientos());
+    if (movimientoActual1.getTipoMovimiento().getValue().equals("Retiro")) {
+      saldo += movimientoActual1.getValor();
+    } else if (movimientoActual1.getTipoMovimiento().getValue().equals("Deposito")) {
+      saldo -= movimientoActual1.getValor();
+    }
+    return saldo;
+  }
+
+  private void populateMapToMovimiento(Movimiento movimientoActual, Map<String, Object> fields) {
+    fields.forEach((k, v) -> {
+      switch (k) {
+        case "tipoMovimiento":
+          movimientoActual.setTipoMovimiento(movimientoMapper.stringToTipoMovimiento(v.toString()));
+          break;
+        case "valor":
+          movimientoActual.setValor(Double.parseDouble(v + ""));
+          break;
+      }
+    });
   }
 
   private double hacerMovimiento(String tipoMovimiento, double saldo, double valor) {

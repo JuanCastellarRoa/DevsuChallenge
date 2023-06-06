@@ -41,6 +41,10 @@ para la capa de persistencia, WEB para la capa de controladores y TEST para las 
 La aplicación se conecta a una base de datos Postgresql en tiempo de ejecución y Además, se utiliza
 Lombok para reducir la cantidad de código.
 
+Además, el proyecto se encuentra configurado para ser ejecutado en un entorno Docker. Se proporciona
+un archivo "docker-compose.yml" que permite la creación de una imagen de Docker con todas las dependencias
+necesarias para ejecutar la aplicación.
+
 * Java 17
 * Maven
 * Spring Boot 3.1.0

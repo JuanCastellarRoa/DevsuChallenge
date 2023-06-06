@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Juan Castellar\",\n  \"genero\": \"Masculino\",\n  \"edad\": 37,\n  \"identificacion\": \"1047378873\",\n  \"direccion\": \"Calle 55 # 12sur-14\",\n  \"telefono\": \"3183030931\",\n  \"clienteId\":\"1\",\n  \"password\":\"123456!\",\n  \"estado\":\"True\"\n}",
+							"raw": "{\n  \"nombre\": \"Juan Castellar\",\n  \"genero\": \"Masculino\",\n  \"edad\": 37,\n  \"identificacion\": \"1047378873\",\n  \"direccion\": \"Calle 55 # 12sur-14\",\n  \"telefono\": \"3183030931\",\n  \"password\":\"123456!\",\n  \"estado\":\"True\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Juan David Castellar Roa\",\n  \"genero\": \"Masculino\",\n  \"edad\": 37,\n  \"identificacion\": \"1047378873\",\n  \"direccion\": \"cra 55 # 12sur-14\",\n  \"telefono\": \"3183030931\",\n  \"password\":\"123456!\",\n  \"estado\":\"True\"\n}",
+							"raw": "{\n  \"nombre\": \"Juan David Castellar Roa\",\n  \"genero\": \"Femenino\",\n  \"edad\": 50,\n  \"identificacion\": \"1047378873\",\n  \"direccion\": \"cra 55 # 12sur-14\",\n  \"telefono\": \"3183030931\",\n  \"password\":\"123456!\",\n  \"estado\":\"False\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -112,7 +112,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"edad\": 38\n}",
+							"raw": "{\n  \"genero\": \"Masculino\",\n  \"edad\":37,\n  \"estado\": \"True\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -233,7 +233,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"numeroCuenta\": \"54200000562\",\n  \"tipoCuenta\": \"Ahorro\",\n  \"saldoInicial\": 200.5,\n  \"estado\":\"True\"\n}",
+							"raw": "{\n  \"numeroCuenta\": \"54200000562\",\n  \"tipoCuenta\": \"Corriente\",\n  \"saldoInicial\": 1000.5,\n  \"estado\":\"False\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -262,7 +262,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"numeroCuenta\": \"54200000563\",\n  \"saldoInicial\": 300.5\n}",
+							"raw": "{\n  \"tipoCuenta\" : \"Ahorro\",\n  \"estado\": \"True\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -316,7 +316,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"tipoMovimiento\": \"Deposito\",\n  \"valor\": 1000.5,\n  \"cuenta\" : {\n      \"numeroCuenta\":\"54200000562\"\n  }\n}",
+							"raw": "{\n  \"tipoMovimiento\": \"Deposito\",\n  \"valor\": 100.5,\n  \"cuenta\" : {\n      \"numeroCuenta\":\"54200000562\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -383,7 +383,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"fecha\": \"2023-05-29\",\n  \"tipoMovimiento\": \"Deposito\",\n  \"valor\": 200.5,\n  \"saldo\":200.5,\n  \"cuenta\" : {\n      \"numeroCuenta\":\"54200000562\"\n  }\n}",
+							"raw": "{\n  \"tipoMovimiento\": \"Retiro\",\n  \"valor\": 300.5,\n  \"cuenta\" : {\n      \"numeroCuenta\":\"54200000562\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -412,7 +412,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"saldo\":500.5\n}",
+							"raw": "{\n  \"tipoMovimiento\":\"Retiro\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -465,7 +465,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/reportes?clienteId=1&fechaInicial=2023-05-29&fechaFinal=2023-05-29",
+							"raw": "http://localhost:8080/reportes?clienteId=1&fechaInicial=2023-05-29&fechaFinal=2023-06-29",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -485,7 +485,7 @@
 								},
 								{
 									"key": "fechaFinal",
-									"value": "2023-05-29"
+									"value": "2023-06-29"
 								}
 							]
 						}
