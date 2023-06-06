@@ -110,6 +110,9 @@ public class ClienteServiceImpl implements ClienteService {
         if (key.equals("genero")) {
           value = clienteMapper.stringToGenero(value.toString());
         }
+        if (key.equals("estado")) {
+          value = clienteMapper.stringToBoolean(value.toString());
+        }
         Field field = ReflectionUtils.findField(Cliente.class, key);
         field.setAccessible(true);
         ReflectionUtils.setField(field, clienteActualizado.get(), value);
@@ -131,7 +134,7 @@ public class ClienteServiceImpl implements ClienteService {
       LocalDate fechaFinal) {
     final Optional<Cliente> clienteOpt = clienteRepository.findById(clienteId);
     if (clienteOpt.isPresent()) {
-      Cliente finalC=clienteOpt.get();
+      Cliente finalC = clienteOpt.get();
       finalC.getCuentas().forEach(c -> {
         List<Movimiento> movimientoList = c.getMovimientos().stream()
             .filter(m -> m.getFecha().isEqual(fechaInicial) || (m.getFecha().isAfter(fechaInicial)

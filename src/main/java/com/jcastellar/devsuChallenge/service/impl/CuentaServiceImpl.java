@@ -120,6 +120,9 @@ public class CuentaServiceImpl implements CuentaService {
         if (key.equals("tipoCuenta")) {
           value = cuentaMapper.stringToTipoCuenta(value.toString());
         }
+        if (key.equals("estado")) {
+          value = cuentaMapper.stringToBoolean(value.toString());
+        }
         Field field = ReflectionUtils.findField(Cuenta.class, key);
         field.setAccessible(true);
         ReflectionUtils.setField(field, cuentaActualizada.get(), value);

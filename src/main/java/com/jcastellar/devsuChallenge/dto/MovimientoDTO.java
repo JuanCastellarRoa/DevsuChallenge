@@ -2,6 +2,8 @@ package com.jcastellar.devsuChallenge.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jcastellar.devsuChallenge.utility.enumerador.TipoMovimiento;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +17,7 @@ public class MovimientoDTO {
 
   private Long id;
 
-  //@Enumerated(EnumType.STRING)
+  @Enumerated(EnumType.STRING)
   private TipoMovimiento tipoMovimiento;
 
   @NotNull

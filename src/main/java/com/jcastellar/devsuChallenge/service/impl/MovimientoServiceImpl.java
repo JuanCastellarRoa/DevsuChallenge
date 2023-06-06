@@ -119,22 +119,31 @@ public class MovimientoServiceImpl implements MovimientoService {
   public MovimientoDTO updateMovimiento(Long id, MovimientoDTO movimientoDTO) {
     Optional<Movimiento> movimientoOpt = movimientoRepository.findById(id);
     if (movimientoOpt.isPresent()) {
+      Movimiento movimientoActual = movimientoOpt.get();
       double saldoTotal = 0;
-      Movimiento movimiento = movimientoMapper.movimientoDTOToMovimiento(movimientoDTO);
-      Movimiento movimientoActualizado = movimientoRepository.findById(id).get();
-      //movimientoActualizado.setFecha(LocalDate.now());
-      movimientoActualizado.setTipoMovimiento(movimiento.getTipoMovimiento());
-      movimientoActualizado.setValor(movimiento.getValor());
+      Cuenta cuenta = cuentaRepository.findByNumeroCuenta(
+          movimientoDTO.getCuenta().getNumeroCuenta()).get();
+      double saldo = getUltimoMovimiento(cuenta.getMovimientos());
+      if (movimientoActual.getTipoMovimiento().getValue().equals("Retiro")) {
+        saldo += movimientoActual.getValor();
+      } else if (movimientoActual.getTipoMovimiento().getValue().equals("Deposito")) {
+        saldo -= movimientoActual.getValor();
+      }
 
-      Optional<Cuenta> cuentaOpt = cuentaRepository.findByNumeroCuenta(
-          movimientoDTO.getCuenta().getNumeroCuenta());
-      saldoTotal = ((movimiento.getValor() - movimientoOpt.get().getValor())
-          + getUltimoMovimiento(cuentaOpt.get().getMovimientos()));
-      movimientoActualizado.setSaldo(saldoTotal);
+      saldoTotal = hacerMovimiento(movimientoDTO.getTipoMovimiento().getValue(), saldo,
+          movimientoDTO.getValor());
 
-      movimientoRepository.save(movimientoActualizado);
+      if (saldoTotal < 0) {
+        throw new PeticionErronea("Fondos insuficientes");
+      }
+
+      movimientoActual.setTipoMovimiento(movimientoDTO.getTipoMovimiento());
+      movimientoActual.setValor(movimientoDTO.getValor());
+      movimientoActual.setSaldo(saldoTotal);
+
+      movimientoRepository.save(movimientoActual);
       logger.info("Movimiento actualizado");
-      return movimientoMapper.movimientoToMovimientoDTO(movimientoActualizado);
+      return movimientoMapper.movimientoToMovimientoDTO(movimientoActual);
     }
     logger.warn("Movimiento no encontrado");
     throw new NoEncontrado("Movimiento no encontrado");
@@ -145,19 +154,19 @@ public class MovimientoServiceImpl implements MovimientoService {
   public MovimientoDTO actualizacionParcialByFields(Long id, Map<String, Object> fields) {
     Optional<Movimiento> movimientoOpt = movimientoRepository.findById(id);
     if (movimientoOpt.isPresent()) {
-      Optional<Movimiento> movimientoActualizado = movimientoRepository.findById(id);
+      Movimiento movimientoActualizado = movimientoOpt.get();
       fields.forEach((key, value) -> {
         if (key.equals("tipoMovimiento")) {
           value = movimientoMapper.stringToTipoMovimiento(value.toString());
         }
         Field field = ReflectionUtils.findField(Movimiento.class, key);
         field.setAccessible(true);
-        ReflectionUtils.setField(field, movimientoActualizado.get(), value);
+        ReflectionUtils.setField(field, movimientoActualizado, value);
       });
-      movimientoRepository.save(movimientoActualizado.get());
+      movimientoRepository.save(movimientoActualizado);
       logger.info("Movimiento parcialmente acualizado!");
       MovimientoDTO movimientoDTO = movimientoMapper.movimientoToMovimientoDTO(
-          movimientoActualizado.get());
+          movimientoActualizado);
       return movimientoDTO;
     } else {
       logger.warn("Movimiento no encontrado");

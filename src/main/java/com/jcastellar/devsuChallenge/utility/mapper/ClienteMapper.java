@@ -25,4 +25,12 @@ public interface ClienteMapper {
     return Genero.fromValue(genero);
   }
 
+  default String booleanToString(Boolean estado) {
+    return estado.toString();
+  }
+
+  default Boolean stringToBoolean(String estado) {
+    return Boolean.valueOf(estado);
+  }
+
 }

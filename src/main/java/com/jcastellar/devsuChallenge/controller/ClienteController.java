@@ -60,14 +60,14 @@ public class ClienteController {
   public ResponseEntity<ClienteDTO> updateCliente(@PathVariable Long id,
       @RequestBody ClienteDTO clienteDTO) {
     ClienteDTO clienteActualizado = clienteService.updateCliente(id, clienteDTO);
-    return ResponseEntity.status(HttpStatus.CREATED).body(clienteActualizado);
+    return ResponseEntity.status(HttpStatus.OK).body(clienteActualizado);
   }
 
   @PatchMapping("/{id}")
   public ResponseEntity<ClienteDTO> actualizacionParcial(@PathVariable Long id,
       @RequestBody Map<String, Object> fields) {
     ClienteDTO clienteActualizado = clienteService.actualizacionParcialByFields(id, fields);
-    return ResponseEntity.status(HttpStatus.CREATED).body(clienteActualizado);
+    return ResponseEntity.status(HttpStatus.OK).body(clienteActualizado);
   }
 
   @DeleteMapping("/{id}")

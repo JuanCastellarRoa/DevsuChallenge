@@ -5,29 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="278e903c-b01d-414d-bb31-7fd073d2cedd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/jcastellar/devsuChallenge/service/impl/ClienteServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/jcastellar/devsuChallenge/service/impl/CuentaServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/controller/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/controller/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/controller/CuentaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/controller/CuentaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/controller/MovimientoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/controller/MovimientoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/dto/CuentaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/dto/CuentaDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/dto/MovimientoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/dto/MovimientoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/dto/reporte/MovimientoReporteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/dto/reporte/MovimientoReporteDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ClienteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ClienteServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/CuentaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/CuentaServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ReporteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ReporteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/enumerador/Genero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/enumerador/Genero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/enumerador/TipoCuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/enumerador/TipoCuenta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/enumerador/TipoMovimiento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/enumerador/TipoMovimiento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/mapper/ClienteMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/mapper/ClienteMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/mapper/CuentaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/mapper/CuentaMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/mapper/MovimientoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/utility/mapper/MovimientoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/ClienteMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/ClienteMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/CuentaMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/CuentaMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/MovimientoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/MovimientoMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/jcastellar/devsuChallenge/DevsuChallengeApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/jcastellar/devsuChallenge/DevsuChallengeApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BaseDatos.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/ClienteMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/CuentaMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/MovimientoMapperImpl.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,80 +102,82 @@
       <recent name="com.jcastellar.devsuChallenge.utility.mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MovimientoServiceImplTest">
-    <configuration name="ClienteServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.DevsuChallengeApplication (2)">
+    <configuration name="DevsuChallengeApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="devsuChallenge" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.jcastellar.devsuChallenge.service.impl.*" />
+          <option name="PATTERN" value="com.jcastellar.devsuChallenge.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.service.impl.ClienteServiceImplTest" />
+      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge" />
+      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.DevsuChallengeApplicationTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CuentaServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DevsuChallengeApplicationTests.createNewClient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="devsuChallenge" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.jcastellar.devsuChallenge.service.impl.*" />
+          <option name="PATTERN" value="com.jcastellar.devsuChallenge.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.service.impl.CuentaServiceImplTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CuentaServiceImplTest.testCreateCuenta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="devsuChallenge" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.jcastellar.devsuChallenge.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.service.impl.CuentaServiceImplTest" />
-      <option name="METHOD_NAME" value="testCreateCuenta" />
+      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge" />
+      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.DevsuChallengeApplicationTests" />
+      <option name="METHOD_NAME" value="createNewClient" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CuentaServiceImplTest.testGetCuentas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DevsuChallengeApplicationTests.createNewTransaction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="devsuChallenge" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.jcastellar.devsuChallenge.service.impl.*" />
+          <option name="PATTERN" value="com.jcastellar.devsuChallenge.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.service.impl.CuentaServiceImplTest" />
-      <option name="METHOD_NAME" value="testGetCuentas" />
+      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge" />
+      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.DevsuChallengeApplicationTests" />
+      <option name="METHOD_NAME" value="createNewTransaction" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MovimientoServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DevsuChallengeApplicationTests.createNewWithdrawTransaction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="devsuChallenge" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.jcastellar.devsuChallenge.service.impl.*" />
+          <option name="PATTERN" value="com.jcastellar.devsuChallenge.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.service.impl.MovimientoServiceImplTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge" />
+      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.DevsuChallengeApplicationTests" />
+      <option name="METHOD_NAME" value="createNewWithdrawTransaction" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DevsuChallengeApplicationTests.getReporte_ReturnsReporteDTO" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="devsuChallenge" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jcastellar.devsuChallenge.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.jcastellar.devsuChallenge" />
+      <option name="MAIN_CLASS_NAME" value="com.jcastellar.devsuChallenge.DevsuChallengeApplicationTests" />
+      <option name="METHOD_NAME" value="getReporte_ReturnsReporteDTO" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,11 +216,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MovimientoServiceImplTest" />
-        <item itemvalue="JUnit.CuentaServiceImplTest" />
-        <item itemvalue="JUnit.CuentaServiceImplTest.testCreateCuenta" />
-        <item itemvalue="JUnit.CuentaServiceImplTest.testGetCuentas" />
-        <item itemvalue="JUnit.ClienteServiceImplTest" />
+        <item itemvalue="JUnit.DevsuChallengeApplicationTests" />
+        <item itemvalue="JUnit.DevsuChallengeApplicationTests.getReporte_ReturnsReporteDTO" />
+        <item itemvalue="JUnit.DevsuChallengeApplicationTests.createNewWithdrawTransaction" />
+        <item itemvalue="JUnit.DevsuChallengeApplicationTests.createNewTransaction" />
+        <item itemvalue="JUnit.DevsuChallengeApplicationTests.createNewClient" />
       </list>
     </recent_temporary>
   </component>
@@ -243,6 +241,7 @@
       <workItem from="1685933252685" duration="13937000" />
       <workItem from="1685950906356" duration="15523000" />
       <workItem from="1685997528522" duration="7682000" />
+      <workItem from="1686028249576" duration="25961000" />
     </task>
     <servers />
   </component>
@@ -265,8 +264,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImpl.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="4" />
+          <line>135</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImpl.java</url>
+          <line>129</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

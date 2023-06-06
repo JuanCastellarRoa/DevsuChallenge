@@ -5,13 +5,11 @@ import com.jcastellar.devsuChallenge.service.MovimientoService;
 import com.jcastellar.devsuChallenge.utility.excepciones.NoEncontrado;
 import com.jcastellar.devsuChallenge.utility.excepciones.PeticionErronea;
 import jakarta.validation.Valid;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -65,7 +62,7 @@ public class MovimientoController {
   public ResponseEntity<MovimientoDTO> updateMovimiento(@PathVariable Long id,
       @RequestBody MovimientoDTO movimientoDTO) {
     MovimientoDTO movimientoActualizado = movimientoService.updateMovimiento(id, movimientoDTO);
-    return ResponseEntity.status(HttpStatus.CREATED).body(movimientoActualizado);
+    return ResponseEntity.status(HttpStatus.OK).body(movimientoActualizado);
   }
 
   @PatchMapping("/{id}")
@@ -73,7 +70,7 @@ public class MovimientoController {
       @RequestBody Map<String, Object> fields) {
     MovimientoDTO movimientoActualizado = movimientoService.actualizacionParcialByFields(id,
         fields);
-    return ResponseEntity.status(HttpStatus.CREATED).body(movimientoActualizado);
+    return ResponseEntity.status(HttpStatus.OK).body(movimientoActualizado);
   }
 
   @DeleteMapping("/{id}")

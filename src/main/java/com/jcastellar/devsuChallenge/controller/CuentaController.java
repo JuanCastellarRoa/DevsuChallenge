@@ -62,7 +62,7 @@ public class CuentaController {
       @RequestBody CuentaDTO cuentaDTO) {
     try {
       CuentaDTO cuentaActualizada = cuentaService.updateCuenta(id, cuentaDTO);
-      return ResponseEntity.status(HttpStatus.CREATED).body(cuentaActualizada);
+      return ResponseEntity.status(HttpStatus.OK).body(cuentaActualizada);
     } catch (Exception e) {
       throw new PeticionErronea("Verificar los datos de la cuenta");
     }
@@ -73,7 +73,7 @@ public class CuentaController {
       @RequestBody Map<String, Object> fields) {
     try {
       CuentaDTO cuentaActualizada = cuentaService.actualizacionParcialByFields(id, fields);
-      return ResponseEntity.status(HttpStatus.CREATED).body(cuentaActualizada);
+      return ResponseEntity.status(HttpStatus.OK).body(cuentaActualizada);
     } catch (Exception e) {
       throw new PeticionErronea("Verificar los datos de la cuenta");
     }

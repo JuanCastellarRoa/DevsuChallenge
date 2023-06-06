@@ -24,4 +24,8 @@ public interface CuentaMapper {
   default TipoCuenta stringToTipoCuenta(String tipoCuenta) {
     return TipoCuenta.fromValue(tipoCuenta);
   }
+
+  default Boolean stringToBoolean(String valor) {
+    return Boolean.valueOf(valor);
+  }
 }

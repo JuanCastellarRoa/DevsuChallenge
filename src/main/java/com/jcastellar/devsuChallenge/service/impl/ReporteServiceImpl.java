@@ -64,7 +64,8 @@ public class ReporteServiceImpl implements ReporteService {
       for (Movimiento m : cuenta.getMovimientos()) {
         MovimientoReporteDTO movimientoReporteDTO = new MovimientoReporteDTO();
         movimientoReporteDTO.setFecha(m.getFecha());
-        movimientoReporteDTO.setTipoMovimiento(m.getTipoMovimiento().toString());
+        //movimientoReporteDTO.setTipoMovimiento(m.getTipoMovimiento().toString());
+        movimientoReporteDTO.setTipoMovimiento(m.getTipoMovimiento());
         movimientoReporteDTO.setValor(m.getValor());
         movimientosReporteDTO.add(movimientoReporteDTO);
       }
@@ -82,4 +83,6 @@ public class ReporteServiceImpl implements ReporteService {
     logger.info("Reporte Generado!");
     return reporteDTO;
   }
+
+
 }
