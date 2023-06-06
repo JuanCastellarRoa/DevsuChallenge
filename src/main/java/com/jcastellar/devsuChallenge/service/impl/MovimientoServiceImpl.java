@@ -18,6 +18,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +35,8 @@ public class MovimientoServiceImpl implements MovimientoService {
   private final MovimientoMapper movimientoMapper;
   private final CuentaRepository cuentaRepository;
   private final ClienteRepository clienteRepository;
+  private static final Logger logger = LoggerFactory.getLogger(MovimientoServiceImpl.class);
+
 
   @Autowired
   public MovimientoServiceImpl(MovimientoRepository movimientoRepository,
@@ -75,6 +79,7 @@ public class MovimientoServiceImpl implements MovimientoService {
             saldoUltimoMovimiento, movimientoDTO.getValor());
       }
       if (saldoTotal < 0) {
+        logger.warn(SND);
         throw new PeticionErronea(SND);
       }
 
@@ -84,12 +89,15 @@ public class MovimientoServiceImpl implements MovimientoService {
       movimiento.setSaldo(saldoTotal);
 
       if (validarSaldoExcedido(cuentaOpt.get().getMovimientos(), movimiento)) {
+        logger.warn(CDE);
         throw new PeticionErronea(CDE);
       }
 
       final Movimiento nuevoMovimiento = movimientoRepository.save(movimiento);
+      logger.info("Movimiento realizado!");
       return movimientoMapper.movimientoToMovimientoDTO(nuevoMovimiento);
     }
+    logger.warn("Cuenta no encontrada");
     throw new NoEncontrado("Cuenta no encontrada");
   }
 
@@ -99,7 +107,9 @@ public class MovimientoServiceImpl implements MovimientoService {
     Optional<Movimiento> movimientoOpt = movimientoRepository.findById(id);
     if (movimientoOpt.isPresent()) {
       movimientoRepository.deleteById(id);
+      logger.info("Movimiento eliminado!");
     } else {
+      logger.warn("Movimiento no encontrado");
       throw new NoEncontrado("Movimiento no encontrado");
     }
   }
@@ -123,8 +133,10 @@ public class MovimientoServiceImpl implements MovimientoService {
       movimientoActualizado.setSaldo(saldoTotal);
 
       movimientoRepository.save(movimientoActualizado);
+      logger.info("Movimiento actualizado");
       return movimientoMapper.movimientoToMovimientoDTO(movimientoActualizado);
     }
+    logger.warn("Movimiento no encontrado");
     throw new NoEncontrado("Movimiento no encontrado");
   }
 
@@ -135,15 +147,20 @@ public class MovimientoServiceImpl implements MovimientoService {
     if (movimientoOpt.isPresent()) {
       Optional<Movimiento> movimientoActualizado = movimientoRepository.findById(id);
       fields.forEach((key, value) -> {
+        if (key.equals("tipoMovimiento")) {
+          value = movimientoMapper.stringToTipoMovimiento(value.toString());
+        }
         Field field = ReflectionUtils.findField(Movimiento.class, key);
         field.setAccessible(true);
         ReflectionUtils.setField(field, movimientoActualizado.get(), value);
       });
       movimientoRepository.save(movimientoActualizado.get());
+      logger.info("Movimiento parcialmente acualizado!");
       MovimientoDTO movimientoDTO = movimientoMapper.movimientoToMovimientoDTO(
           movimientoActualizado.get());
       return movimientoDTO;
     } else {
+      logger.warn("Movimiento no encontrado");
       throw new NoEncontrado("Movimiento no encontrado");
     }
   }

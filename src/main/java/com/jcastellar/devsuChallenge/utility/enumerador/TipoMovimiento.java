@@ -1,9 +1,7 @@
 package com.jcastellar.devsuChallenge.utility.enumerador;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public enum TipoMovimiento {
@@ -19,5 +17,14 @@ public enum TipoMovimiento {
   @JsonValue
   public String getValue() {
     return value;
+  }
+
+  public static TipoMovimiento fromValue(String value) {
+    for (TipoMovimiento tipoMovimiento : TipoMovimiento.values()) {
+      if (tipoMovimiento.getValue().equals(value)) {
+        return tipoMovimiento;
+      }
+    }
+    throw new IllegalArgumentException("Tipo de movimiento inválido: " + value);
   }
 }

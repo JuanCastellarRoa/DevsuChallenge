@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-05T04:11:28-0500",
+    date = "2023-06-05T14:46:24-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
@@ -53,22 +53,5 @@ public class ClienteMapperImpl implements ClienteMapper {
         clienteDTO.setPassword( cliente.getPassword() );
 
         return clienteDTO;
-    }
-
-    @Override
-    public void actualizarClienteDesdeDTO(ClienteDTO clienteDTO, Cliente cliente) {
-        if ( clienteDTO == null ) {
-            return;
-        }
-
-        cliente.setClienteId( clienteDTO.getClienteId() );
-        cliente.setNombre( clienteDTO.getNombre() );
-        cliente.setGenero( clienteDTO.getGenero() );
-        cliente.setEdad( clienteDTO.getEdad() );
-        cliente.setIdentificacion( clienteDTO.getIdentificacion() );
-        cliente.setDireccion( clienteDTO.getDireccion() );
-        cliente.setTelefono( clienteDTO.getTelefono() );
-        cliente.setPassword( clienteDTO.getPassword() );
-        cliente.setEstado( clienteDTO.getEstado() );
     }
 }

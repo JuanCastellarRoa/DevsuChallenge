@@ -3,8 +3,6 @@ package com.jcastellar.devsuChallenge.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jcastellar.devsuChallenge.utility.enumerador.TipoCuenta;
 import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -25,7 +23,7 @@ public class CuentaDTO {
   @Column(name = "numero_de_cuenta", unique = true)
   private String numeroCuenta;
 
-  @Enumerated(EnumType.STRING)
+  //@Enumerated(EnumType.STRING)
   private TipoCuenta tipoCuenta;
 
   @NotNull

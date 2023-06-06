@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,7 @@ public class ClienteServiceImpl implements ClienteService {
 
   private final ClienteRepository clienteRepository;
   private final ClienteMapper clienteMapper;
+  private static final Logger logger = LoggerFactory.getLogger(ClienteServiceImpl.class);
 
   @Autowired
   public ClienteServiceImpl(
@@ -53,11 +56,13 @@ public class ClienteServiceImpl implements ClienteService {
     Optional<Cliente> clienteOpt = clienteRepository.findByIdentificacion(
         clienteDTO.getIdentificacion());
     if (clienteOpt.isPresent()) {
+      logger.warn("Cliente ya existe");
       throw new YaExiste("Cliente ya existe");
     }
     Cliente cliente = clienteMapper.clienteDTOToCliente(clienteDTO);
     cliente.setPassword(BCrypt.hashpw(cliente.getPassword(), BCrypt.gensalt()));
     final Cliente clienteCreated = clienteRepository.save(cliente);
+    logger.info("Cliente creado!");
     return clienteMapper.clienteToClienteDTO(clienteCreated);
   }
 
@@ -67,6 +72,7 @@ public class ClienteServiceImpl implements ClienteService {
     clienteRepository.findById(clienteId)
         .orElseThrow(() -> new NoEncontrado("Cliente no encontrado"));
     clienteRepository.deleteById(clienteId);
+    logger.info("Cliente eliminado!");
   }
 
   @Override
@@ -86,31 +92,14 @@ public class ClienteServiceImpl implements ClienteService {
       clienteActualizado.setEstado(cliente.getEstado().booleanValue());
       clienteActualizado.setCuentas(cliente.getCuentas());
       clienteRepository.save(clienteActualizado);
+      logger.info("Cliente actualizado!");
       return clienteMapper.clienteToClienteDTO(clienteActualizado);
     } else {
+      logger.warn("Cliente no encontrado");
       throw new NoEncontrado("Cliente no encontrado");
     }
   }
 
-  @Override
-  @Transactional
-  public ClienteDTO actualizacionParcialByFields(Long clienteId, ClienteDTO clienteDTO) {
-    Cliente clienteActual = clienteRepository.findById(clienteId)
-        .orElseThrow(() -> new NoEncontrado("No se encontró al cliente con el ID especificado"));
-
-    clienteActual.setClienteId(clienteActual.getClienteId());
-
-    // Mapear el clienteDTO al clienteActual
-    clienteMapper.actualizarClienteDesdeDTO(clienteDTO, clienteActual);
-
-    // Guardar el cliente actualizado en la base de datos
-    Cliente clienteActualizado = clienteRepository.save(clienteActual);
-
-    // Mapear el clienteActualizado a un objeto ClienteDTO y devolverlo
-    return clienteMapper.clienteToClienteDTO(clienteActualizado);
-  }
-
-/*
   @Override
   @Transactional
   public ClienteDTO actualizacionParcialByFields(Long clienteId, Map<String, Object> fields) {
@@ -118,6 +107,9 @@ public class ClienteServiceImpl implements ClienteService {
     if (clienteOpt.isPresent()) {
       Optional<Cliente> clienteActualizado = clienteRepository.findById(clienteId);
       fields.forEach((key, value) -> {
+        if (key.equals("genero")) {
+          value = clienteMapper.stringToGenero(value.toString());
+        }
         Field field = ReflectionUtils.findField(Cliente.class, key);
         field.setAccessible(true);
         ReflectionUtils.setField(field, clienteActualizado.get(), value);
@@ -126,12 +118,14 @@ public class ClienteServiceImpl implements ClienteService {
           .setPassword(BCrypt.hashpw(clienteActualizado.get().getPassword(), BCrypt.gensalt()));
       clienteRepository.save(clienteActualizado.get());
       ClienteDTO clienteDTO = clienteMapper.clienteToClienteDTO(clienteActualizado.get());
+      logger.info("Cliente parcialmente actualizado!");
       return clienteDTO;
     } else {
+      logger.warn("Cliente no encontrado");
       throw new NoEncontrado("Cliente no encontrado");
     }
   }
-*/
+
   @Override
   public Cliente getMovByClienteId(Long clienteId, LocalDate fechaInicial,
       LocalDate fechaFinal) {
@@ -140,12 +134,15 @@ public class ClienteServiceImpl implements ClienteService {
       Cliente finalC=clienteOpt.get();
       finalC.getCuentas().forEach(c -> {
         List<Movimiento> movimientoList = c.getMovimientos().stream()
-            .filter(m -> m.getFecha().isEqual(fechaInicial) || (m.getFecha().isAfter(fechaInicial) && m.getFecha().isBefore(fechaFinal)) || m.getFecha().isEqual(fechaFinal) )
+            .filter(m -> m.getFecha().isEqual(fechaInicial) || (m.getFecha().isAfter(fechaInicial)
+                && m.getFecha().isBefore(fechaFinal)) || m.getFecha().isEqual(fechaFinal))
             .toList();
         c.setMovimientos(movimientoList);
       });
+      logger.info("Listado de movimientos obtenido!");
       return finalC;
     } else {
+      logger.warn("Cliente no encontrado");
       throw new NoEncontrado("Cliente no encontrado");
     }
   }

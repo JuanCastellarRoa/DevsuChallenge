@@ -19,4 +19,13 @@ public enum Genero {
     return value;
   }
 
+  public static Genero fromValue(String value) {
+    for (Genero genero : Genero.values()) {
+      if (genero.getValue().equals(value)) {
+        return genero;
+      }
+    }
+    throw new IllegalArgumentException("Genero inválido: " + value);
+  }
+
 }

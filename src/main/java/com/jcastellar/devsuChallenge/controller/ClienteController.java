@@ -6,6 +6,7 @@ import com.jcastellar.devsuChallenge.utility.excepciones.NoEncontrado;
 import com.jcastellar.devsuChallenge.utility.excepciones.PeticionErronea;
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -63,18 +65,10 @@ public class ClienteController {
 
   @PatchMapping("/{id}")
   public ResponseEntity<ClienteDTO> actualizacionParcial(@PathVariable Long id,
-      @RequestBody ClienteDTO clienteDTO) {
-    ClienteDTO clienteActualizado = clienteService.actualizacionParcialByFields(id, clienteDTO);
-    return ResponseEntity.status(HttpStatus.CREATED).body(clienteActualizado);
-  }
-
-
-  /*@PatchMapping("/{id}")
-  public ResponseEntity<ClienteDTO> actualizacionParcial(@PathVariable Long id,
       @RequestBody Map<String, Object> fields) {
     ClienteDTO clienteActualizado = clienteService.actualizacionParcialByFields(id, fields);
     return ResponseEntity.status(HttpStatus.CREATED).body(clienteActualizado);
-  }*/
+  }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<ClienteDTO> deleteCliente(@PathVariable Long id) {

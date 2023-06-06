@@ -16,9 +16,7 @@ public interface ClienteService {
 
   ClienteDTO updateCliente(Long clienteId, ClienteDTO clienteDTO);
 
-  //ClienteDTO actualizacionParcialByFields(Long clienteId, Map<String, Object> fields);
-
-  ClienteDTO actualizacionParcialByFields(Long clienteId, ClienteDTO clienteDTO);
+  ClienteDTO actualizacionParcialByFields(Long clienteId, Map<String, Object> fields);
 
   void deleteById(Long clienteId);
 

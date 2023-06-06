@@ -4,13 +4,12 @@ import com.jcastellar.devsuChallenge.dto.ClienteDTO;
 import com.jcastellar.devsuChallenge.dto.CuentaDTO;
 import com.jcastellar.devsuChallenge.entity.Cliente;
 import com.jcastellar.devsuChallenge.entity.Cuenta;
-import com.jcastellar.devsuChallenge.utility.enumerador.TipoCuenta;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-05T04:11:27-0500",
+    date = "2023-06-05T14:46:23-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
@@ -24,9 +23,9 @@ public class CuentaMapperImpl implements CuentaMapper {
 
         Cuenta cuenta = new Cuenta();
 
-        cuenta.setTipoCuenta( tipoCuentaToTipoCuenta( cuentaDTO.getTipoCuenta() ) );
         cuenta.setId( cuentaDTO.getId() );
         cuenta.setNumeroCuenta( cuentaDTO.getNumeroCuenta() );
+        cuenta.setTipoCuenta( cuentaDTO.getTipoCuenta() );
         if ( cuentaDTO.getSaldoInicial() != null ) {
             cuenta.setSaldoInicial( cuentaDTO.getSaldoInicial() );
         }
@@ -44,32 +43,14 @@ public class CuentaMapperImpl implements CuentaMapper {
 
         CuentaDTO cuentaDTO = new CuentaDTO();
 
-        cuentaDTO.setTipoCuenta( tipoCuentaToTipoCuenta( cuenta.getTipoCuenta() ) );
         cuentaDTO.setId( cuenta.getId() );
         cuentaDTO.setNumeroCuenta( cuenta.getNumeroCuenta() );
+        cuentaDTO.setTipoCuenta( cuenta.getTipoCuenta() );
         cuentaDTO.setSaldoInicial( cuenta.getSaldoInicial() );
         cuentaDTO.setEstado( cuenta.getEstado() );
         cuentaDTO.setCliente( clienteToClienteDTO( cuenta.getCliente() ) );
 
         return cuentaDTO;
-    }
-
-    protected TipoCuenta tipoCuentaToTipoCuenta(TipoCuenta tipoCuenta) {
-        if ( tipoCuenta == null ) {
-            return null;
-        }
-
-        TipoCuenta tipoCuenta1;
-
-        switch ( tipoCuenta ) {
-            case AHORRO: tipoCuenta1 = TipoCuenta.AHORRO;
-            break;
-            case CORRIENTE: tipoCuenta1 = TipoCuenta.CORRIENTE;
-            break;
-            default: throw new IllegalArgumentException( "Unexpected enum constant: " + tipoCuenta );
-        }
-
-        return tipoCuenta1;
     }
 
     protected Cliente clienteDTOToCliente(ClienteDTO clienteDTO) {

@@ -2,7 +2,6 @@ package com.jcastellar.devsuChallenge.utility.enumerador;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public enum TipoCuenta {
@@ -18,6 +17,15 @@ public enum TipoCuenta {
   @JsonValue
   public String getValue() {
     return value;
+  }
+
+  public static TipoCuenta fromValue(String value) {
+    for (TipoCuenta tipoCuenta : TipoCuenta.values()) {
+      if (tipoCuenta.getValue().equals(value)) {
+        return tipoCuenta;
+      }
+    }
+    throw new IllegalArgumentException("Tipo de cuenta inválido: " + value);
   }
 
 }

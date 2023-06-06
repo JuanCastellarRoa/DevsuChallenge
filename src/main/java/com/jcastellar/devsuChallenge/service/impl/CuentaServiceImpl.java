@@ -3,23 +3,21 @@ package com.jcastellar.devsuChallenge.service.impl;
 import com.jcastellar.devsuChallenge.dto.CuentaDTO;
 import com.jcastellar.devsuChallenge.entity.Cliente;
 import com.jcastellar.devsuChallenge.entity.Cuenta;
-import com.jcastellar.devsuChallenge.entity.Movimiento;
 import com.jcastellar.devsuChallenge.repository.ClienteRepository;
 import com.jcastellar.devsuChallenge.repository.CuentaRepository;
 import com.jcastellar.devsuChallenge.repository.MovimientoRepository;
 import com.jcastellar.devsuChallenge.service.CuentaService;
-import com.jcastellar.devsuChallenge.service.MovimientoService;
-import com.jcastellar.devsuChallenge.utility.enumerador.TipoMovimiento;
 import com.jcastellar.devsuChallenge.utility.excepciones.ErrorInterno;
 import com.jcastellar.devsuChallenge.utility.excepciones.NoEncontrado;
 import com.jcastellar.devsuChallenge.utility.excepciones.PeticionErronea;
 import com.jcastellar.devsuChallenge.utility.mapper.CuentaMapper;
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +30,8 @@ public class CuentaServiceImpl implements CuentaService {
   private final CuentaMapper cuentaMapper;
   private final ClienteRepository clienteRepository;
   private final MovimientoRepository movimientoRepository;
+  private static final Logger logger = LoggerFactory.getLogger(CuentaServiceImpl.class);
+
 
   @Autowired
   public CuentaServiceImpl(CuentaRepository cuentaRepository,
@@ -40,7 +40,7 @@ public class CuentaServiceImpl implements CuentaService {
     this.cuentaRepository = cuentaRepository;
     this.cuentaMapper = cuentaMapper;
     this.clienteRepository = clienteRepository;
-    this.movimientoRepository=movimientoRepository;
+    this.movimientoRepository = movimientoRepository;
   }
 
   @Override
@@ -62,16 +62,17 @@ public class CuentaServiceImpl implements CuentaService {
     Optional<Cliente> clienteOpt = clienteRepository.findByIdentificacion(
         cuentaDTO.getCliente().getIdentificacion());
     if (clienteOpt.isEmpty()) {
+      logger.warn("Verificar la identificación del cliente");
       throw new PeticionErronea("Verificar la identificación del cliente");
     }
     try {
       Cuenta cuenta = cuentaMapper.cuentaDTOToCuenta(cuentaDTO);
       cuenta.setCliente(clienteOpt.get());
       final Cuenta nuevaCuenta = cuentaRepository.save(cuenta);
-      //final Movimiento movimientoInicial = getNewMovimientoInicial(nuevaCuenta);
-      //movimientoRepository.save(movimientoInicial);
+      logger.info("Cuenta creada!");
       return cuentaMapper.cuentaToCuentaDTO(nuevaCuenta);
     } catch (Exception e) {
+      logger.warn("Verificar los datos de la cuenta");
       throw new ErrorInterno("Verificar los datos de la cuenta");
     }
   }
@@ -79,9 +80,12 @@ public class CuentaServiceImpl implements CuentaService {
   @Override
   @Transactional
   public void deleteById(Long id) {
+    //verificar saldo antes de eliminar
     try {
       cuentaRepository.deleteById(id);
+      logger.info("Cuenta eliminada!");
     } catch (Exception e) {
+      logger.warn("Cuenta no encontrada");
       throw new NoEncontrado("Cuenta no encontrada");
     }
   }
@@ -98,10 +102,10 @@ public class CuentaServiceImpl implements CuentaService {
       cuentaActualizada.setSaldoInicial(cuenta.getSaldoInicial());
       cuentaActualizada.setEstado(cuenta.getEstado());
       cuentaRepository.save(cuentaActualizada);
-      //final Movimiento movimiento = getNewMovimientoInicial(cuentaActualizada);
-      //movimientoRepository.save(movimiento);
+      logger.info("Cuenta actualizada!");
       return cuentaMapper.cuentaToCuentaDTO(cuentaActualizada);
     } else {
+      logger.warn("Cuenta no encontrada!");
       throw new NoEncontrado("Cuenta no encontrada");
     }
   }
@@ -111,29 +115,22 @@ public class CuentaServiceImpl implements CuentaService {
   public CuentaDTO actualizacionParcialByFields(Long id, Map<String, Object> fields) {
     Optional<Cuenta> cuentaOpt = cuentaRepository.findById(id);
     if (cuentaOpt.isPresent()) {
-
       Optional<Cuenta> cuentaActualizada = cuentaRepository.findById(id);
       fields.forEach((key, value) -> {
+        if (key.equals("tipoCuenta")) {
+          value = cuentaMapper.stringToTipoCuenta(value.toString());
+        }
         Field field = ReflectionUtils.findField(Cuenta.class, key);
         field.setAccessible(true);
         ReflectionUtils.setField(field, cuentaActualizada.get(), value);
       });
       cuentaRepository.save(cuentaActualizada.get());
+      logger.info("Cuenta actualizada!");
       CuentaDTO cuentaDTO = cuentaMapper.cuentaToCuentaDTO(cuentaActualizada.get());
       return cuentaDTO;
     } else {
+      logger.warn("Cuenta no encontrada!");
       throw new NoEncontrado("Cuenta no encontrada");
     }
   }
-
-  /*private Movimiento getNewMovimientoInicial(Cuenta cuenta) {
-    Movimiento movimiento = new Movimiento();
-    movimiento.setCuenta(cuenta);
-    movimiento.setTipoMovimiento(TipoMovimiento.DEPOSITO);
-    movimiento.setFecha(LocalDate.now());
-    movimiento.setValor(cuenta.getSaldoInicial());
-    movimiento.setSaldo(cuenta.getSaldoInicial());
-
-    return movimiento;
-  }*/
 }
