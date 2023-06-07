@@ -44,7 +44,8 @@ Lombok para reducir la cantidad de código.
 Además, el proyecto se encuentra configurado para ser ejecutado en un entorno Docker. Se proporciona
 un archivo "docker-compose.yml" que permite la creación de una imagen de Docker con todas las
 dependencias necesarias para ejecutar la aplicación, para eso es necesaria la ejecución del
-comando "docker compose up" desde la raiz del proyecto.
+comando "docker compose up" desde la raiz del proyecto y verificar tambien la configuracion correcta
+del puerto por ejemplo "spring.datasource.url=jdbc:postgresql://localhost:51332/devsudb"
 
 * Java 17
 * Maven
