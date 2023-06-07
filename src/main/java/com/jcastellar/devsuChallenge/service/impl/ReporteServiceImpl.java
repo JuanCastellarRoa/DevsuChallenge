@@ -22,10 +22,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReporteServiceImpl implements ReporteService {
 
+  private static final Logger logger = LoggerFactory.getLogger(ReporteServiceImpl.class);
   private final ClienteService clienteService;
   private final MovimientoService movimientoService;
   private final MovimientoMapper movimientoMapper;
-  private static final Logger logger = LoggerFactory.getLogger(ReporteServiceImpl.class);
 
 
   @Autowired
@@ -72,7 +72,7 @@ public class ReporteServiceImpl implements ReporteService {
       cuentaReporteDTO.setMovimientos(movimientosReporteDTO);
       cuentaReporteDTO.setTotalRetiros(totalRetiros);
       cuentaReporteDTO.setTotalDepositos(totalDepositos);
-      cuentaReporteDTO.setSaldo(cuentaReporteDTO.getSaldo() + (totalDepositos-totalRetiros));
+      cuentaReporteDTO.setSaldo(cuentaReporteDTO.getSaldo() + (totalDepositos - totalRetiros));
       cuentaReporteDTOList.add(cuentaReporteDTO);
     }
     reporteDTO.setCuentas(cuentaReporteDTOList);

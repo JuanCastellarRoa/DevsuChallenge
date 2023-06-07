@@ -14,11 +14,6 @@ public enum TipoCuenta {
     this.value = value;
   }
 
-  @JsonValue
-  public String getValue() {
-    return value;
-  }
-
   public static TipoCuenta fromValue(String value) {
     for (TipoCuenta tipoCuenta : TipoCuenta.values()) {
       if (tipoCuenta.getValue().equals(value)) {
@@ -26,6 +21,11 @@ public enum TipoCuenta {
       }
     }
     throw new IllegalArgumentException("Tipo de cuenta inválido: " + value);
+  }
+
+  @JsonValue
+  public String getValue() {
+    return value;
   }
 
 }

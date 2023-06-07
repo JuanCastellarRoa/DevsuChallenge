@@ -14,11 +14,6 @@ public enum Genero {
     this.value = value;
   }
 
-  @JsonValue
-  public String getValue() {
-    return value;
-  }
-
   public static Genero fromValue(String value) {
     for (Genero genero : Genero.values()) {
       if (genero.getValue().equals(value)) {
@@ -26,6 +21,11 @@ public enum Genero {
       }
     }
     throw new IllegalArgumentException("Genero inválido: " + value);
+  }
+
+  @JsonValue
+  public String getValue() {
+    return value;
   }
 
 }

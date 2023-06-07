@@ -14,11 +14,6 @@ public enum TipoMovimiento {
     this.value = value;
   }
 
-  @JsonValue
-  public String getValue() {
-    return value;
-  }
-
   public static TipoMovimiento fromValue(String value) {
     for (TipoMovimiento tipoMovimiento : TipoMovimiento.values()) {
       if (tipoMovimiento.getValue().equals(value)) {
@@ -26,5 +21,10 @@ public enum TipoMovimiento {
       }
     }
     throw new IllegalArgumentException("Tipo de movimiento inválido: " + value);
+  }
+
+  @JsonValue
+  public String getValue() {
+    return value;
   }
 }

@@ -1,7 +1,6 @@
 package com.jcastellar.devsuChallenge.entity;
 
 import com.jcastellar.devsuChallenge.utility.enumerador.TipoMovimiento;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

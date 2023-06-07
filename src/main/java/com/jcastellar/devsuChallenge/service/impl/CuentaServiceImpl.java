@@ -26,11 +26,11 @@ import org.springframework.util.ReflectionUtils;
 @Service
 public class CuentaServiceImpl implements CuentaService {
 
+  private static final Logger logger = LoggerFactory.getLogger(CuentaServiceImpl.class);
   private final CuentaRepository cuentaRepository;
   private final CuentaMapper cuentaMapper;
   private final ClienteRepository clienteRepository;
   private final MovimientoRepository movimientoRepository;
-  private static final Logger logger = LoggerFactory.getLogger(CuentaServiceImpl.class);
 
 
   @Autowired

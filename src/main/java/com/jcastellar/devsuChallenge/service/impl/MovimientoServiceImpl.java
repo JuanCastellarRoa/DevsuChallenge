@@ -26,14 +26,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
 
+  private static final Logger logger = LoggerFactory.getLogger(MovimientoServiceImpl.class);
   private final String SND = "Saldo no disponible";
   private final String CDE = "Cupo diario excedido";
-
   private final MovimientoRepository movimientoRepository;
   private final MovimientoMapper movimientoMapper;
   private final CuentaRepository cuentaRepository;
   private final ClienteRepository clienteRepository;
-  private static final Logger logger = LoggerFactory.getLogger(MovimientoServiceImpl.class);
 
 
   @Autowired

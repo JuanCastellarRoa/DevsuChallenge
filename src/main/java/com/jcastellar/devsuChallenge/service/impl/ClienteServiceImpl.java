@@ -25,9 +25,9 @@ import org.springframework.util.ReflectionUtils;
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
+  private static final Logger logger = LoggerFactory.getLogger(ClienteServiceImpl.class);
   private final ClienteRepository clienteRepository;
   private final ClienteMapper clienteMapper;
-  private static final Logger logger = LoggerFactory.getLogger(ClienteServiceImpl.class);
 
   @Autowired
   public ClienteServiceImpl(
@@ -47,7 +47,8 @@ public class ClienteServiceImpl implements ClienteService {
   @Override
   @Transactional(readOnly = true)
   public ClienteDTO getCliente(Long clienteId) {
-    return clienteRepository.findById(clienteId).map(clienteMapper::clienteToClienteDTO).orElse(null);
+    return clienteRepository.findById(clienteId).map(clienteMapper::clienteToClienteDTO)
+        .orElse(null);
   }
 
   @Override

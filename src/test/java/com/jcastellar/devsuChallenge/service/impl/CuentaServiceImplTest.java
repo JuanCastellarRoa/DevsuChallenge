@@ -12,7 +12,6 @@ import com.jcastellar.devsuChallenge.repository.CuentaRepository;
 import com.jcastellar.devsuChallenge.repository.MovimientoRepository;
 import com.jcastellar.devsuChallenge.utility.enumerador.TipoCuenta;
 import com.jcastellar.devsuChallenge.utility.mapper.CuentaMapper;
-import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
