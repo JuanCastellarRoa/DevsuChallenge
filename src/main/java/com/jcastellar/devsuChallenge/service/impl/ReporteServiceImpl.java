@@ -51,6 +51,7 @@ public class ReporteServiceImpl implements ReporteService {
     for (Cuenta cuenta : cliente.getCuentas()) {
       CuentaReporteDTO cuentaReporteDTO = new CuentaReporteDTO();
       cuentaReporteDTO.setNumeroCuenta(cuenta.getNumeroCuenta());
+      cuentaReporteDTO.setTipoCuenta(cuenta.getTipoCuenta().toString());
       cuentaReporteDTO.setSaldo(cuenta.getSaldoInicial());
 
       List<MovimientoReporteDTO> movimientosReporteDTO = new ArrayList<>();
@@ -64,7 +65,6 @@ public class ReporteServiceImpl implements ReporteService {
       for (Movimiento m : cuenta.getMovimientos()) {
         MovimientoReporteDTO movimientoReporteDTO = new MovimientoReporteDTO();
         movimientoReporteDTO.setFecha(m.getFecha());
-        //movimientoReporteDTO.setTipoMovimiento(m.getTipoMovimiento().toString());
         movimientoReporteDTO.setTipoMovimiento(m.getTipoMovimiento());
         movimientoReporteDTO.setValor(m.getValor());
         movimientosReporteDTO.add(movimientoReporteDTO);

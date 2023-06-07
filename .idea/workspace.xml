@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="278e903c-b01d-414d-bb31-7fd073d2cedd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Devsu.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/Devsu.postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/dto/reporte/CuentaReporteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/dto/reporte/CuentaReporteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ClienteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ClienteServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/CuentaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/CuentaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ReporteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ReporteServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/ClienteMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/ClienteMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/CuentaMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/CuentaMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/MovimientoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/jcastellar/devsuChallenge/utility/mapper/MovimientoMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +227,7 @@
       <workItem from="1685933252685" duration="13937000" />
       <workItem from="1685950906356" duration="15523000" />
       <workItem from="1685997528522" duration="7682000" />
-      <workItem from="1686028249576" duration="28474000" />
+      <workItem from="1686028249576" duration="31283000" />
     </task>
     <servers />
   </component>
@@ -246,14 +249,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImpl.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/MovimientoServiceImpl.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/jcastellar/devsuChallenge/service/impl/ReporteServiceImpl.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

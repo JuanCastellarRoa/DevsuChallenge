@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class CuentaReporteDTO {
 
   private String numeroCuenta;
+  private String tipoCuenta;
   private Double saldo;
   private Double totalRetiros;
   private Double totalDepositos;

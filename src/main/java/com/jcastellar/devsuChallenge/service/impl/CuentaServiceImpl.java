@@ -96,7 +96,7 @@ public class CuentaServiceImpl implements CuentaService {
     Optional<Cuenta> cuentaOpt = cuentaRepository.findById(id);
     if (cuentaOpt.isPresent()) {
       Cuenta cuenta = cuentaMapper.cuentaDTOToCuenta(cuentaDTO);
-      Cuenta cuentaActualizada = cuentaRepository.findById(id).get();
+      Cuenta cuentaActualizada = cuentaOpt.get();
       cuentaActualizada.setNumeroCuenta(cuenta.getNumeroCuenta());
       cuentaActualizada.setTipoCuenta(cuenta.getTipoCuenta());
       cuentaActualizada.setSaldoInicial(cuenta.getSaldoInicial());
@@ -115,7 +115,6 @@ public class CuentaServiceImpl implements CuentaService {
   public CuentaDTO actualizacionParcialByFields(Long id, Map<String, Object> fields) {
     Optional<Cuenta> cuentaOpt = cuentaRepository.findById(id);
     if (cuentaOpt.isPresent()) {
-      Optional<Cuenta> cuentaActualizada = cuentaRepository.findById(id);
       fields.forEach((key, value) -> {
         if (key.equals("tipoCuenta")) {
           value = cuentaMapper.stringToTipoCuenta(value.toString());
@@ -125,11 +124,11 @@ public class CuentaServiceImpl implements CuentaService {
         }
         Field field = ReflectionUtils.findField(Cuenta.class, key);
         field.setAccessible(true);
-        ReflectionUtils.setField(field, cuentaActualizada.get(), value);
+        ReflectionUtils.setField(field, cuentaOpt.get(), value);
       });
-      cuentaRepository.save(cuentaActualizada.get());
+      cuentaRepository.save(cuentaOpt.get());
       logger.info("Cuenta actualizada!");
-      CuentaDTO cuentaDTO = cuentaMapper.cuentaToCuentaDTO(cuentaActualizada.get());
+      CuentaDTO cuentaDTO = cuentaMapper.cuentaToCuentaDTO(cuentaOpt.get());
       return cuentaDTO;
     } else {
       logger.warn("Cuenta no encontrada!");

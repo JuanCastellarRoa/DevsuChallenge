@@ -81,7 +81,7 @@ public class ClienteServiceImpl implements ClienteService {
     Optional<Cliente> clienteOpt = clienteRepository.findById(clienteId);
     if (clienteOpt.isPresent()) {
       Cliente cliente = clienteMapper.clienteDTOToCliente(clienteDTO);
-      Cliente clienteActualizado = clienteRepository.findById(clienteId).get();
+      Cliente clienteActualizado = clienteOpt.get();
       clienteActualizado.setNombre(cliente.getNombre());
       clienteActualizado.setGenero(cliente.getGenero());
       clienteActualizado.setEdad(cliente.getEdad());
@@ -105,7 +105,6 @@ public class ClienteServiceImpl implements ClienteService {
   public ClienteDTO actualizacionParcialByFields(Long clienteId, Map<String, Object> fields) {
     Optional<Cliente> clienteOpt = clienteRepository.findById(clienteId);
     if (clienteOpt.isPresent()) {
-      Optional<Cliente> clienteActualizado = clienteRepository.findById(clienteId);
       fields.forEach((key, value) -> {
         if (key.equals("genero")) {
           value = clienteMapper.stringToGenero(value.toString());
@@ -115,12 +114,12 @@ public class ClienteServiceImpl implements ClienteService {
         }
         Field field = ReflectionUtils.findField(Cliente.class, key);
         field.setAccessible(true);
-        ReflectionUtils.setField(field, clienteActualizado.get(), value);
+        ReflectionUtils.setField(field, clienteOpt.get(), value);
       });
-      clienteActualizado.get()
-          .setPassword(BCrypt.hashpw(clienteActualizado.get().getPassword(), BCrypt.gensalt()));
-      clienteRepository.save(clienteActualizado.get());
-      ClienteDTO clienteDTO = clienteMapper.clienteToClienteDTO(clienteActualizado.get());
+      clienteOpt.get()
+          .setPassword(BCrypt.hashpw(clienteOpt.get().getPassword(), BCrypt.gensalt()));
+      Cliente cliente = clienteRepository.save(clienteOpt.get());
+      ClienteDTO clienteDTO = clienteMapper.clienteToClienteDTO(cliente);
       logger.info("Cliente parcialmente actualizado!");
       return clienteDTO;
     } else {
